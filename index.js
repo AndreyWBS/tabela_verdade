@@ -22,7 +22,7 @@ function gerar_tabela() {
   );
 }
 
-function resultado() {
+function pegar_tabela() {
   var resultsArray = [];
   var tableRows = document.querySelectorAll("table tbody tr");
   console.log(tableRows);
@@ -33,10 +33,13 @@ function resultado() {
     checkBoxes.forEach(function (cedula_) {
       linhas.push(cedula_.checked);
     });
-    resultsArray.push(linhas)
+    resultsArray.push(linhas);
   });
+  return resultsArray;
+}
 
-  console.log(resultsArray);
+function resultado() {
+  console.log(pegar_tabela());
 }
 
 function verifica_true(sequencia, posicao) {
@@ -80,7 +83,7 @@ function genera_sub_conjuntos(array) {
   let result = [];
 
   function backtrack(start, subset) {
-    result.push(subset.slice()); // Adiciona o subconjunto
+    result.push(subset.slice()); 
 
     for (let i = start; i < array.length; i++) {
       subset.push(array[i]);
