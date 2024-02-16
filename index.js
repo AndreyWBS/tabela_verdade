@@ -19,12 +19,11 @@ function gerar_tabela() {
   }
   
   function verifica_true(sequencia, posicao) {
-      if (posicao >= 0 && posicao < sequencia.length) {
-          var bit = parseInt(sequencia.charAt(posicao), 10);
-          return bit === 1;
-      } else {
-          return false;
-      }
+    if (sequencia[posicao] == 1) {
+        console.log("na sequencia :" ,sequencia ,"a posição :",posicao , "é true" )
+        return true
+    }
+    return false
   }
   
   function gerarTabelaCheckbox(numColunas, numLinhas) {
@@ -40,8 +39,9 @@ function gerar_tabela() {
     for (let i = 1; i <= numLinhas; i++) {
       tabelaHTML += "<tr>";
       for (let j = 1; j <= numColunas; j++) {
-          let binario = (j).toString(2); // Convertendo o número para binário
-          if (verifica_true(binario, i )) {
+          let binario = (i-1).toString(2);
+          console.log(binario.split('').reverse().join(''), ": binario", i-1 ,"linha" )
+          if (verifica_true(binario.split('').reverse().join(''), j-1 )) {
               tabelaHTML += `<td><input type='checkbox' id='checkbox_${i}_${j}' class="linha${i} coluna${j}" name='checkbox_${i}_${j}' value='${i},${j}' checked ></td>`;
           } else {
               tabelaHTML += `<td><input type='checkbox' id='checkbox_${i}_${j}' class="linha${i} coluna${j}" name='checkbox_${i}_${j}' value='${i},${j}'  ></td>`;
